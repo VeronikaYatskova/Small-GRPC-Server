@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option csharp_namespace = "StudentsGrpcService";
+
+service Student {
+	rpc GetStudents (GetStudentsRequest) returns (Students);
+	rpc AddStudent (RequestModelGrpc) returns (Message);
+	rpc UpdateStudent (UpdateStudentModel) returns (Message);
+	rpc DeleteStudent (StudentGuid) returns (Message);
+}
+
+message GetStudentsRequest {
+
+}
+
+message StudentGuid {
+	string guid = 1;
+}
+
+message StudentModelGrpc {
+	string guid = 1;
+	string firstName = 2;
+	string lastName = 3;
+	string groupNumber = 4;
+}
+
+message RequestModelGrpc {
+	string firstName = 2;
+	string lastName = 3;
+	string groupNumber = 4;
+}
+
+message UpdateStudentModel {
+	string guid = 1;
+	RequestModelGrpc newStudentInfo = 2;
+}
+
+message Message {
+	string message = 1;
+}
+
+message Students {
+	repeated StudentModelGrpc students = 1;
+}
